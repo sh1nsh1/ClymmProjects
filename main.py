@@ -1,7 +1,7 @@
 import telebot
 
-tasks = []
-bot = telebot.TeleBot(open("TOKEN.txt",'r').readline())
+tasklist = []
+bot = telebot.TeleBot(open("TOKEN.txt", 'r').readline())
 
 
 @bot.message_handler(commands=["start"])
@@ -19,16 +19,16 @@ def help(message):
     bot.send_message(message.chat.id, """Commands available:
      /start - bot's introduce
      /help - see all commands
-     /get - show saved tasks
-     /add_"your task" - add new tasks
-     /rm_(number  of the task) - delete saved tasks""")
+     /get - show saved task
+     /add_"your task" - add new task
+     /rm_(number of the task, all) - delete saved task""")
 
 
 @bot.message_handler(commands=["get"])
-def get_tasks(message):
+def get_tasklist(message):
     read_data(message)
-    text = show(tasks)
-    if len(tasks) > 0:
+    text = show(tasklist)
+    if len(tasklist) > 0:
         bot.send_message(message.chat.id, text)
     else:
         bot.send_message(message.chat.id, "No tasks")
@@ -37,7 +37,7 @@ def get_tasks(message):
 @bot.message_handler(commands=["add"])
 def add_task(message):
     read_data(message)
-    tasks.append(message.text[5:] + "\n")
+    tasklist.append(message.text[5:] + "\n")
     bot.send_message(message.chat.id, 'Task added')
     rewrite_data(message)
 
@@ -45,31 +45,40 @@ def add_task(message):
 @bot.message_handler(commands=["rm"])
 def remove_task(message):
     read_data(message)
+    words = ['all', 'всё', 'все']
+    text = message.text[4:]
     try:
-        number = int(message.text[4:])
-        if (0 < number <= len(tasks)):
-            tasks.pop(number - 1)
-            bot.send_message(message.chat.id, 'Task removed')
+        if text.isdigit():
+            number = int(text)
+            if 0 < number <= len(tasklist):
+                tasklist.pop(number - 1)
+                bot.send_message(message.chat.id, 'Task removed')
+            else:
+                bot.send_message(message.chat.id, 'Can not remove task')
+            rewrite_data(message)
         else:
-            bot.send_message(message.chat.id, 'Can not remove task')
-        rewrite_data(message)
-    except:
-        bot.send_message(message.chat.id, 'Invalid commmand')
+            for x in words:
+                if x in text:
+                    tasklist.clear()
+                    bot.send_message(message.chat.id, 'All tasks removed')
+                    rewrite_data(message)
+    except :
+        bot.send_message(message.chat.id, 'Invalid command')
 
 
 def read_data(message):
-    global tasks
-    tasks = open(str(message.chat.id) + ".txt", 'r+').readlines()
+    global tasklist
+    tasklist = open(str(message.chat.id) + ".txt", 'r+').readlines()
 
 
 def rewrite_data(message):
-    open(str(message.chat.id) + '.txt', "w+").writelines("".join(tasks))
+    open(str(message.chat.id) + '.txt', "w+").writelines("".join(tasklist))
 
 
-def show(tasks):
+def show(tasklist):
     line = ""
-    for i in range(len(tasks)):
-        line += f"{i + 1}. {tasks[i]}"
+    for i in range(len(tasklist)):
+        line += f"{i + 1}. {tasklist[i]}"
     return line
 
 
