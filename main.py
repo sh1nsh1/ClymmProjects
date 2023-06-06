@@ -1,7 +1,7 @@
 import telebot
 
 tasks = []
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot(open("TOKEN.txt",'r').readline())
 
 
 @bot.message_handler(commands=["start"])
