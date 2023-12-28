@@ -1,0 +1,19 @@
+﻿<div class="col-md-6 p-lg-2 mx-auto my-5 text-center">
+    <h1>Все персонажи</h1>
+    <div class=" row mt-5 mb-5 ">
+        
+        @foreach(var obj in Model)
+        {
+            <div class=" col-lg-4 mb-4">
+                <img src="@obj.Img" height="370" width="250" alt="Pirates">
+                <h2>@obj.Name</h2>
+                <div class="container">
+                    <p>@obj.ShortDesc</p>
+                </div>
+                <p style="font-family:Sayyda">Цена: @obj.Price.ToString() ₽</p>
+                <p><a class="btn btn-success" href="/Characters/All/@obj.Id">Посмотреть</a></p>
+            </div>
+        }  
+    </div>
+</div>
+

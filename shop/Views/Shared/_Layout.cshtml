@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="/css/Style.css" rel="stylesheet" type="text/css"/>
+    
+    <link href="/css/bootstrap.min.css" rel= "stylesheet" type="text/css" />
+        
+</head>
+<body>
+    @* шапка *@
+    <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand d-md-none" href="#">
+                <svg class="bi" width="24" height="24"><use xlink:href="#aperture"></use></svg>
+                Aperture
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="#offcanvas" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="#offcanvas" aria-labelledby="#offcanvasLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="#offcanvasLabel">Aperture</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav flex-grow-1 justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <svg class="bi" width="24" height="24"><use xlink:href="#aperture"></use></svg>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/Characters/All">All Characters</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Characters/Pirates">Pirates</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Characters/Marines">Marines</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <svg class="bi" width="24" height="24"><use xlink:href="#cart"></use></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+        <div class="col-md-6 p-lg-2 mx-auto my-2">
+            <a href="/Home/Index" style="text-decoration: none; color:inherit;"><h1 class="display-3 fw-bold">One Piece</h1></a>
+            <h3 class="fw-normal text-muted mb-3">Выбери своего любимого героя One Piece</h3>
+            <div class="d-flex gap-3 justify-content-center lead fw-normal">
+                <p>Магазин костюмов для косплея</p>
+            </div>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+   @*  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary"> *@
+       
+
+
+        @RenderBody()
+    
+    <footer class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
+                <small class="d-block mb-3 text-body-secondary">© 2023-2024</small>
+            </div>
+            
+            <div class="col-6 col-md">
+                
+                <ul class="list-unstyled text-small">
+                    
+                    <h5><li><a class="link-secondary text-decoration-none" href="#">Ресурсы</a></li></h5>
+                    <h5><li><a class="link-secondary text-decoration-none" href="#">О проекте</a></li></h5>
+                </ul>
+            </div>
+            <div class="col-6 col-md">
+			    <br>
+                <h7><p><a href="tel:+79003237472">+7(900) 323-74-72</a></p></h7>
+                <h7><p><a href="tel:+79196908949">+7(919) 690-89-49</a></p></h7>
+                <p style="font-weight: 300">Адрес магазина в Казани: м. Дубравная, ул. Юлиуса Фучика, д. 123, корп. 2.</p>
+			</div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script scr = "~/js/bootstrap.min.js"></script>
+</body>
+</html>

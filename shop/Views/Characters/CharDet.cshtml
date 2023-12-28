@@ -1,0 +1,56 @@
+﻿@model List<Character>
+<script>
+    
+    function hov(mode) {
+        if (mode == 1) {
+            var el = document.getElementById('photo');
+            el.setAttribute('src', '@(@Model[0].Img.Substring(0, Model[0].Img.Length - 4) + "1.jpg")');
+        }
+        else if (mode == 2) {
+            var el = document.getElementById('photo');
+            el.setAttribute('src', '@(@Model[0].Img.Substring(0,Model[0].Img.Length-4) + "2.jpg")');
+        }
+        else if (mode == 3) {
+            var el = document.getElementById('photo');
+            el.setAttribute('src', '@(@Model[0].Img.Substring(0, Model[0].Img.Length - 4) + "3.jpg")');
+        }
+        else if (mode == 0) {
+            var el = document.getElementById('photo');
+            el.setAttribute('src', '@Model[0].Img');
+        }
+        
+    };
+
+</script>
+<div class="col-md-12 p-lg-2 mx-auto my-5 text-center">
+    <h1>Подробнее о @Model[0].Name</h1>
+    <div class=" row mt-5 mb-5 ">
+
+        <div class="col-lg-6 mb-4">
+            
+            <img id="photo" src="@Model[0].Img" height="500" alt="Pirates">
+            <div class="col-lg-12 mt-3">
+                
+                <div id="btn1" class="btn btn-secondary col-lg-1" onmouseover="hov(0)" ></div>
+                <div id="btn2" class="btn btn-secondary col-lg-1" onmouseover="hov(1)" ></div>
+                <div id="btn3" class="btn btn-secondary col-lg-1" onmouseover="hov(2)" ></div>
+                <div id="btn4" class="btn btn-secondary col-lg-1" onmouseover="hov(3)" ></div>
+            </div>
+                
+        </div>
+        <div class="col-lg-6 mb-4">
+            <h2>Имя: @Model[0].Name</h2>
+            <div class="container">
+                <p>@Model[0].ShortDesc</p>
+            </div>
+            <div class="container">
+                <p>@Model[0].LongDesc</p>
+            </div>
+            <p>Цена: @Model[0].Price.ToString() ₽</p>
+            <p><a class="btn btn-success" href="/Order/Checkout/">К оформлению</a></p>
+        </div>
+
+
+    </div>
+</div>
+
